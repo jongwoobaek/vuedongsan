@@ -1,4 +1,12 @@
 <template>
+  <div class="black-bg" v-if="isOpenModal">
+    <div class="white-bg">
+      <h4>상세 페이지</h4>
+      <p>상세 페이지 내용</p>
+      <button @click="isOpenModal = false">모달 닫기</button>
+    </div>
+  </div>
+
   <div class="menu">
     <a v-for="(menu, index) in menuList" :key="index">{{ menu }}</a>
   </div>
@@ -6,7 +14,7 @@
   <h1 :style="blueText">Vuedongsan</h1>
   <div v-for="(product, index) in products" :key="index">
     <img :src="getImageSrc(index)" alt="room image" class="room-img" />
-    <h4>{{ product.name }}</h4>
+    <h4 v-on:click="isOpenModal = true">{{ product.name }}</h4>
     <p>{{ product.price }} 만원</p>
     <button v-on:click="reportIncrease(product)">허위 매물 신고</button>
     <span>신고 수 : {{ product.num }}</span>
@@ -18,6 +26,7 @@ export default {
   name: "App",
   data() {
     return {
+      isOpenModal: false,
       blueText: "color: blue",
       products: [
         {
@@ -52,6 +61,29 @@ export default {
 </script>
 
 <style>
+body {
+  margin: 0;
+}
+
+div {
+  box-sizing: border-box;
+}
+
+.black-bg {
+  padding: 20px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+}
+
+.white-bg {
+  border-radius: 8px;
+  padding: 20px;
+  width: 100%;
+  background-color: white;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
