@@ -7,6 +7,8 @@
   <div v-for="(product, index) in products" :key="index">
     <h4>{{ product.name }}</h4>
     <p>{{ product.price }} 만원</p>
+    <button v-on:click="reportIncrease(product)">허위 매물 신고</button>
+    <span>신고 수 : {{ product.num }}</span>
   </div>
 </template>
 
@@ -20,18 +22,26 @@ export default {
         {
           name: "역삼동 원룸",
           price: 60,
+          num: 0,
         },
         {
           name: "천호동 원룸",
           price: 70,
+          num: 0,
         },
         {
           name: "마포구 원룸",
           price: 80,
+          num: 0,
         },
       ],
       menuList: ["Home", "Shop", "About"],
     };
+  },
+  methods: {
+    reportIncrease(product) {
+      product.num++;
+    },
   },
   components: {},
 };
