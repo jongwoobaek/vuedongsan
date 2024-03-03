@@ -1,11 +1,5 @@
 <template>
-  <div class="black-bg" v-if="isOpenModal">
-    <div class="white-bg">
-      <h4>상세 페이지</h4>
-      <p>상세 페이지 내용</p>
-      <button @click="isOpenModal = false">모달 닫기</button>
-    </div>
-  </div>
+  <ProductModal :isOpen="isOpenModal" @close="isOpenModal = false" />
 
   <div class="menu">
     <a v-for="(menu, index) in menuList" :key="index">{{ menu }}</a>
@@ -22,6 +16,8 @@
 </template>
 
 <script>
+import ProductModal from "./components/ProductModal";
+
 export default {
   name: "App",
   data() {
@@ -56,7 +52,9 @@ export default {
       return require(`./assets/rooms/room${index}.jpg`);
     },
   },
-  components: {},
+  components: {
+    ProductModal,
+  },
 };
 </script>
 
@@ -67,21 +65,6 @@ body {
 
 div {
   box-sizing: border-box;
-}
-
-.black-bg {
-  padding: 20px;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  position: fixed;
-}
-
-.white-bg {
-  border-radius: 8px;
-  padding: 20px;
-  width: 100%;
-  background-color: white;
 }
 
 #app {
