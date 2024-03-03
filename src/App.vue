@@ -5,6 +5,7 @@
 
   <h1 :style="blueText">Vuedongsan</h1>
   <div v-for="(product, index) in products" :key="index">
+    <img :src="getImageSrc(index)" alt="" />
     <h4>{{ product.name }}</h4>
     <p>{{ product.price }} 만원</p>
     <button v-on:click="reportIncrease(product)">허위 매물 신고</button>
@@ -41,6 +42,9 @@ export default {
   methods: {
     reportIncrease(product) {
       product.num++;
+    },
+    getImageSrc(index) {
+      return require(`./assets/rooms/room${index}.jpg`);
     },
   },
   components: {},
