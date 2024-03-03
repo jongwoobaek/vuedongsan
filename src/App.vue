@@ -1,5 +1,8 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
+  <div class="menu">
+    <a v-for="(menu, index) in menuList" :key="index">{{ menu }}</a>
+  </div>
+
   <div>
     <h1 :style="blueText">Vuedongsan</h1>
     <h4>{{ products[0] }}</h4>
@@ -24,6 +27,7 @@ export default {
       price2: 70,
       blueText: "color: blue",
       products: ["역삼동 원룸", "천호동 원룸", "마포구 원룸"],
+      menuList: ["Home", "Shop", "About"],
     };
   },
   components: {},
@@ -37,6 +41,17 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+.menu {
+  border-radius: 5px;
+  padding: 15px;
+  background-color: darkslateblue;
+}
+
+.menu a {
+  padding: 10px;
+  color: white;
+  text-decoration: none;
 }
 </style>
