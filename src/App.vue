@@ -5,7 +5,7 @@
 
   <h1 :style="blueText">Vuedongsan</h1>
   <div v-for="(product, index) in products" :key="index">
-    <img :src="getImageSrc(index)" alt="" />
+    <img :src="getImageSrc(index)" alt="room image" class="room-img" />
     <h4>{{ product.name }}</h4>
     <p>{{ product.price }} 만원</p>
     <button v-on:click="reportIncrease(product)">허위 매물 신고</button>
@@ -70,5 +70,10 @@ export default {
   padding: 10px;
   color: white;
   text-decoration: none;
+}
+
+.room-img {
+  margin-top: 40px;
+  width: 100%;
 }
 </style>
