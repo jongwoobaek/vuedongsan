@@ -10,6 +10,9 @@
   </div>
 
   <h1 :style="blueText">Vuedongsan</h1>
+
+  <DiscountBanner />
+
   <div v-for="product in products" :key="product.id">
     <img :src="product.image" alt="room image" class="room-img" />
     <h4 v-on:click="openModal(product)">{{ product.title }}</h4>
@@ -22,6 +25,7 @@
 <script>
 import ProductModal from "./components/ProductModal";
 import productList from "./assets/productList";
+import DiscountBanner from "./components/DiscountBanner";
 
 export default {
   name: "App",
@@ -45,6 +49,7 @@ export default {
   },
   components: {
     ProductModal,
+    DiscountBanner,
   },
 };
 </script>
