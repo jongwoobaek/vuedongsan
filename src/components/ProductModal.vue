@@ -5,12 +5,15 @@
       <h4>{{ product.title }}</h4>
       <p>{{ product.content }}</p>
       <p>{{ product.price }} 원</p>
+      <DiscountBanner />
       <button @click="closeModal">모달 닫기</button>
     </div>
   </div>
 </template>
 
 <script>
+import DiscountBanner from "./DiscountBanner";
+
 export default {
   name: "ProductModal",
   props: {
@@ -21,6 +24,9 @@ export default {
     closeModal() {
       this.$emit("close");
     },
+  },
+  components: {
+    DiscountBanner,
   },
 };
 </script>
