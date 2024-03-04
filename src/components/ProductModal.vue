@@ -1,8 +1,10 @@
 <template>
   <div class="black-bg" v-if="isOpen">
     <div class="white-bg">
-      <h4>상세 페이지</h4>
-      <p>상세 페이지 내용</p>
+      <img :src="product.image" alt="" />
+      <h4>{{ product.title }}</h4>
+      <p>{{ product.content }}</p>
+      <p>{{ product.price }} 원</p>
       <button @click="closeModal">모달 닫기</button>
     </div>
   </div>
@@ -13,6 +15,7 @@ export default {
   name: "ProductModal",
   props: {
     isOpen: Boolean,
+    product: Object,
   },
   methods: {
     closeModal() {
@@ -36,5 +39,9 @@ export default {
   padding: 20px;
   width: 100%;
   background-color: white;
+}
+
+img {
+  width: 80%;
 }
 </style>

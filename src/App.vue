@@ -1,5 +1,9 @@
 <template>
-  <ProductModal :isOpen="isOpenModal" @close="isOpenModal = false" />
+  <ProductModal
+    :isOpen="isOpenModal"
+    :product="selectedProduct"
+    @close="isOpenModal = false"
+  />
 
   <div class="menu">
     <a v-for="(menu, index) in menuList" :key="index">{{ menu }}</a>
@@ -8,7 +12,7 @@
   <h1 :style="blueText">Vuedongsan</h1>
   <div v-for="product in products" :key="product.id">
     <img :src="product.image" alt="room image" class="room-img" />
-    <h4 v-on:click="isOpenModal = true">{{ product.title }}</h4>
+    <h4 v-on:click="openModal(product)">{{ product.title }}</h4>
     <p>{{ product.price }} 원</p>
     <button v-on:click="likeIncrease(product)">좋아요</button>
     <span>좋아요 수 : {{ product.likeNum }}</span>
@@ -26,12 +30,17 @@ export default {
       isOpenModal: false,
       blueText: "color: blue",
       products: productList,
+      selectedProduct: null,
       menuList: ["Home", "Shop", "About"],
     };
   },
   methods: {
     likeIncrease(product) {
       product.likeNum++;
+    },
+    openModal(product) {
+      this.isOpenModal = true;
+      this.selectedProduct = product;
     },
   },
   components: {
