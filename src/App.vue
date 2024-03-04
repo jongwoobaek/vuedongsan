@@ -6,17 +6,18 @@
   </div>
 
   <h1 :style="blueText">Vuedongsan</h1>
-  <div v-for="(product, index) in products" :key="index">
-    <img :src="getImageSrc(index)" alt="room image" class="room-img" />
-    <h4 v-on:click="isOpenModal = true">{{ product.name }}</h4>
-    <p>{{ product.price }} 만원</p>
-    <button v-on:click="reportIncrease(product)">허위 매물 신고</button>
-    <span>신고 수 : {{ product.num }}</span>
+  <div v-for="product in products" :key="product.id">
+    <img :src="product.image" alt="room image" class="room-img" />
+    <h4 v-on:click="isOpenModal = true">{{ product.title }}</h4>
+    <p>{{ product.price }} 원</p>
+    <button v-on:click="likeIncrease(product)">좋아요</button>
+    <span>좋아요 수 : {{ product.likeNum }}</span>
   </div>
 </template>
 
 <script>
 import ProductModal from "./components/ProductModal";
+import productList from "./assets/productList";
 
 export default {
   name: "App",
@@ -24,29 +25,13 @@ export default {
     return {
       isOpenModal: false,
       blueText: "color: blue",
-      products: [
-        {
-          name: "역삼동 원룸",
-          price: 60,
-          num: 0,
-        },
-        {
-          name: "천호동 원룸",
-          price: 70,
-          num: 0,
-        },
-        {
-          name: "마포구 원룸",
-          price: 80,
-          num: 0,
-        },
-      ],
+      products: productList,
       menuList: ["Home", "Shop", "About"],
     };
   },
   methods: {
-    reportIncrease(product) {
-      product.num++;
+    likeIncrease(product) {
+      product.likeNum++;
     },
     getImageSrc(index) {
       return require(`./assets/rooms/room${index}.jpg`);
@@ -92,3 +77,4 @@ div {
   width: 100%;
 }
 </style>
+./assets/productList
