@@ -33,9 +33,6 @@ export default {
     likeIncrease(product) {
       product.likeNum++;
     },
-    getImageSrc(index) {
-      return require(`./assets/rooms/room${index}.jpg`);
-    },
   },
   components: {
     ProductModal,
