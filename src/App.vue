@@ -13,19 +13,19 @@
 
   <DiscountBanner />
 
-  <div v-for="product in products" :key="product.id">
-    <img :src="product.image" alt="room image" class="room-img" />
-    <h4 v-on:click="openModal(product)">{{ product.title }}</h4>
-    <p>{{ product.price }} 원</p>
-    <button v-on:click="likeIncrease(product)">좋아요</button>
-    <span>좋아요 수 : {{ product.likeNum }}</span>
-  </div>
+  <ProductCard
+    v-for="product in products"
+    :key="product.id"
+    :product="product"
+    @open="openModal(product)"
+  />
 </template>
 
 <script>
 import ProductModal from "./components/ProductModal";
 import productList from "./assets/productList";
 import DiscountBanner from "./components/DiscountBanner";
+import ProductCard from "./components/ProductCard";
 
 export default {
   name: "App",
@@ -39,9 +39,6 @@ export default {
     };
   },
   methods: {
-    likeIncrease(product) {
-      product.likeNum++;
-    },
     openModal(product) {
       this.isOpenModal = true;
       this.selectedProduct = product;
@@ -50,6 +47,7 @@ export default {
   components: {
     ProductModal,
     DiscountBanner,
+    ProductCard,
   },
 };
 </script>
@@ -82,10 +80,4 @@ div {
   color: white;
   text-decoration: none;
 }
-
-.room-img {
-  margin-top: 40px;
-  width: 100%;
-}
 </style>
-./assets/productList
