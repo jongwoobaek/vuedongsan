@@ -4,7 +4,8 @@
       <img :src="product.image" alt="" />
       <h4>{{ product.title }}</h4>
       <p>{{ product.content }}</p>
-      <p>{{ product.price }} 원</p>
+      <input type="number" v-model.number="month" placeholder="Enter Number!" />
+      <p>{{ month }}개월 선택함 {{ product.price * month }} 원</p>
       <DiscountBanner />
       <button @click="closeModal">모달 닫기</button>
     </div>
@@ -16,6 +17,11 @@ import DiscountBanner from "./DiscountBanner";
 
 export default {
   name: "ProductModal",
+  data() {
+    return {
+      month: 1,
+    };
+  },
   props: {
     isOpen: Boolean,
     product: Object,
