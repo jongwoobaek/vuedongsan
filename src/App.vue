@@ -1,9 +1,11 @@
 <template>
-  <ProductModal
-    :isOpen="isOpenModal"
-    :product="selectedProduct"
-    @close="isOpenModal = false"
-  />
+  <Transition name="fade">
+    <ProductModal
+      :isOpen="isOpenModal"
+      :product="selectedProduct"
+      @close="isOpenModal = false"
+    />
+  </Transition>
 
   <div class="menu">
     <a v-for="(menu, index) in menuList" :key="index">{{ menu }}</a>
@@ -79,5 +81,29 @@ div {
   padding: 10px;
   color: white;
   text-decoration: none;
+}
+
+.fade-enter-from {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  transition: all 0.75s;
+}
+
+.fade-enter-to {
+  opacity: 1;
+}
+
+.fade-leave-from {
+  opacity: 1;
+}
+
+.fade-leave-active {
+  transition: all 0.75s;
+}
+
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
