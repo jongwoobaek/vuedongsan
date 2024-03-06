@@ -28,6 +28,7 @@ export default {
   },
   methods: {
     closeModal() {
+      this.month = 1;
       this.$emit("close");
     },
   },
