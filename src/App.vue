@@ -17,6 +17,7 @@
 
   <button @click="sortByPriceAsc">가격 낮은 순 정렬</button>
   <button @click="sortByPriceDesc">가격 높은 순 정렬</button>
+  <button @click="sortByName">이름 순으로 정렬</button>
   <button @click="resetSort">되돌리기</button>
 
   <ProductCard
@@ -59,6 +60,20 @@ export default {
       this.products.sort(
         (product1, product2) => product2.price - product1.price
       );
+    },
+    sortByName() {
+      this.products.sort((product1, product2) => {
+        const titleA = product1.title.toLowerCase();
+        const titleB = product2.title.toLowerCase();
+
+        if (titleA < titleB) {
+          return -1;
+        } else if (titleA > titleB) {
+          return 1;
+        } else {
+          return 0;
+        }
+      });
     },
     resetSort() {
       this.products = [...this.originProducts];
