@@ -24,8 +24,8 @@ export default {
   },
   watch: {
     month(userInput, prevData) {
-      if (userInput < 1 || userInput > 12) {
-        alert("1 ~ 12 사이의 숫자만 입력할 수 있습니다!");
+      if (userInput < 0 || userInput > 12) {
+        alert("0 ~ 12 사이의 숫자만 입력할 수 있습니다!");
         this.month = prevData;
       }
     },
