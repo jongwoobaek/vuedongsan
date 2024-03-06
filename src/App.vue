@@ -15,6 +15,10 @@
 
   <DiscountBanner />
 
+  <button @click="sortByPriceAsc">가격 낮은 순 정렬</button>
+  <button @click="sortByPriceDesc">가격 높은 순 정렬</button>
+  <button @click="resetSort">되돌리기</button>
+
   <ProductCard
     v-for="product in products"
     :key="product.id"
@@ -37,6 +41,7 @@ export default {
       blueText: "color: blue",
       products: productList,
       selectedProduct: null,
+      originProducts: [...productList],
       menuList: ["Home", "Shop", "About"],
     };
   },
@@ -44,6 +49,19 @@ export default {
     openModal(product) {
       this.isOpenModal = true;
       this.selectedProduct = product;
+    },
+    sortByPriceAsc() {
+      this.products.sort(
+        (product1, product2) => product1.price - product2.price
+      );
+    },
+    sortByPriceDesc() {
+      this.products.sort(
+        (product1, product2) => product2.price - product1.price
+      );
+    },
+    resetSort() {
+      this.products = [...this.originProducts];
     },
   },
   components: {
