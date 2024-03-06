@@ -18,6 +18,7 @@
   <button @click="sortByPriceAsc">가격 낮은 순 정렬</button>
   <button @click="sortByPriceDesc">가격 높은 순 정렬</button>
   <button @click="sortByName">이름 순으로 정렬</button>
+  <button @click="displayLowPriceProducts">저가 상품 보기</button>
   <button @click="resetSort">되돌리기</button>
 
   <ProductCard
@@ -74,6 +75,11 @@ export default {
           return 0;
         }
       });
+    },
+    displayLowPriceProducts() {
+      this.products = this.originProducts.filter(
+        (product) => product.price <= 500000
+      );
     },
     resetSort() {
       this.products = [...this.originProducts];
